@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<sdf version="1.9">
+  <world name="unseen_dense_crossing">
+    <gravity>0 0 -9.8</gravity>
+    <plugin filename="ignition-gazebo-physics-system" name="ignition::gazebo::systems::Physics"/>
+    <plugin filename="ignition-gazebo-scene-broadcaster-system" name="ignition::gazebo::systems::SceneBroadcaster"/>
+    <plugin filename="ignition-gazebo-user-commands-system" name="ignition::gazebo::systems::UserCommands"/>
+    <plugin filename="ignition-gazebo-sensors-system" name="ignition::gazebo::systems::Sensors">
+      <render_engine>ogre2</render_engine>
+    </plugin>
+    <light name="sun" type="directional">
+      <pose>0 0 12 0 0 0</pose>
+      <diffuse>0.85 0.85 0.85 1</diffuse>
+      <direction>-0.4 0.2 -0.9</direction>
+    </light>
+    <model name="ground_plane">
+      <static>true</static>
+      <link name="link">
+        <collision name="collision"><geometry><plane><normal>0 0 1</normal><size>20 20</size></plane></geometry></collision>
+        <visual name="visual"><geometry><plane><normal>0 0 1</normal><size>20 20</size></plane></geometry><material><diffuse>0.88 0.88 0.88 1</diffuse></material></visual>
+      </link>
+    </model>
+    <model name="wall_north"><static>true</static><pose>0 8.5 1 0 0 0</pose><link name="link"><collision name="c"><geometry><box><size>17.2 0.2 2</size></box></geometry></collision><visual name="v"><geometry><box><size>17.2 0.2 2</size></box></geometry></visual></link></model>
+    <model name="wall_south"><static>true</static><pose>0 -8.5 1 0 0 0</pose><link name="link"><collision name="c"><geometry><box><size>17.2 0.2 2</size></box></geometry></collision><visual name="v"><geometry><box><size>17.2 0.2 2</size></box></geometry></visual></link></model>
+    <model name="wall_east"><static>true</static><pose>8.5 0 1 0 0 0</pose><link name="link"><collision name="c"><geometry><box><size>0.2 17.2 2</size></box></geometry></collision><visual name="v"><geometry><box><size>0.2 17.2 2</size></box></geometry></visual></link></model>
+    <model name="wall_west"><static>true</static><pose>-8.5 0 1 0 0 0</pose><link name="link"><collision name="c"><geometry><box><size>0.2 17.2 2</size></box></geometry></collision><visual name="v"><geometry><box><size>0.2 17.2 2</size></box></geometry></visual></link></model>
+    <model name="pillar_ne"><static>true</static><pose>3.1 1.7 0.6 0 0 0</pose><link name="link"><collision name="c"><geometry><cylinder><radius>0.45</radius><length>1.2</length></cylinder></geometry></collision><visual name="v"><geometry><cylinder><radius>0.45</radius><length>1.2</length></cylinder></geometry></visual></link></model>
+    <model name="pillar_nw"><static>true</static><pose>-1.7 3.1 0.6 0 0 0</pose><link name="link"><collision name="c"><geometry><cylinder><radius>0.45</radius><length>1.2</length></cylinder></geometry></collision><visual name="v"><geometry><cylinder><radius>0.45</radius><length>1.2</length></cylinder></geometry></visual></link></model>
+    <model name="pillar_sw"><static>true</static><pose>-3.1 -1.7 0.6 0 0 0</pose><link name="link"><collision name="c"><geometry><cylinder><radius>0.45</radius><length>1.2</length></cylinder></geometry></collision><visual name="v"><geometry><cylinder><radius>0.45</radius><length>1.2</length></cylinder></geometry></visual></link></model>
+    <model name="pillar_se"><static>true</static><pose>1.7 -3.1 0.6 0 0 0</pose><link name="link"><collision name="c"><geometry><cylinder><radius>0.45</radius><length>1.2</length></cylinder></geometry></collision><visual name="v"><geometry><cylinder><radius>0.45</radius><length>1.2</length></cylinder></geometry></visual></link></model>
+  </world>
+</sdf>

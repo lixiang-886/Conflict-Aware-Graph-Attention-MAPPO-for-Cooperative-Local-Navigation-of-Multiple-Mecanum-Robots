@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+<sdf version="1.9">
+  <world name="static_clutter">
+    <gravity>0 0 -9.8</gravity>
+    <plugin filename="ignition-gazebo-physics-system" name="ignition::gazebo::systems::Physics"/>
+    <plugin filename="ignition-gazebo-scene-broadcaster-system" name="ignition::gazebo::systems::SceneBroadcaster"/>
+    <plugin filename="ignition-gazebo-user-commands-system" name="ignition::gazebo::systems::UserCommands"/>
+    <plugin filename="ignition-gazebo-sensors-system" name="ignition::gazebo::systems::Sensors">
+      <render_engine>ogre2</render_engine>
+    </plugin>
+
+    <light name="sun" type="directional">
+      <pose>0 0 10 0 0 0</pose>
+      <visualize>false</visualize>
+      <diffuse>0.8 0.8 0.8 1</diffuse>
+      <direction>-0.5 0.1 -0.9</direction>
+    </light>
+
+    <model name="ground_plane">
+      <static>true</static>
+      <link name="link">
+        <collision name="collision"><geometry><plane><normal>0 0 1</normal><size>20 20</size></plane></geometry></collision>
+        <visual name="visual"><geometry><plane><normal>0 0 1</normal><size>20 20</size></plane></geometry><material><diffuse>0.85 0.85 0.85 1</diffuse></material></visual>
+      </link>
+    </model>
+
+    <!-- 外墙 -->
+    <model name="wall_north"><static>true</static><pose>0 6 1 0 0 0</pose><link name="link"><collision name="c"><geometry><box><size>14 0.2 2</size></box></geometry></collision><visual name="v"><geometry><box><size>14 0.2 2</size></box></geometry><material><diffuse>0.65 0.65 0.65 1</diffuse></material></visual></link></model>
+    <model name="wall_south"><static>true</static><pose>0 -6 1 0 0 0</pose><link name="link"><collision name="c"><geometry><box><size>14 0.2 2</size></box></geometry></collision><visual name="v"><geometry><box><size>14 0.2 2</size></box></geometry><material><diffuse>0.65 0.65 0.65 1</diffuse></material></visual></link></model>
+    <model name="wall_east"><static>true</static><pose>7 0 1 0 0 0</pose><link name="link"><collision name="c"><geometry><box><size>0.2 12 2</size></box></geometry></collision><visual name="v"><geometry><box><size>0.2 12 2</size></box></geometry><material><diffuse>0.65 0.65 0.65 1</diffuse></material></visual></link></model>
+    <model name="wall_west"><static>true</static><pose>-7 0 1 0 0 0</pose><link name="link"><collision name="c"><geometry><box><size>0.2 12 2</size></box></geometry></collision><visual name="v"><geometry><box><size>0.2 12 2</size></box></geometry><material><diffuse>0.65 0.65 0.65 1</diffuse></material></visual></link></model>
+
+    <!-- 散布的障碍物群 A (左上) -->
+    <model name="box_a1"><static>true</static><pose>-4 3 0.3 0 0 0</pose><link name="link"><collision name="c"><geometry><box><size>0.6 0.6 0.6</size></box></geometry></collision><visual name="v"><geometry><box><size>0.6 0.6 0.6</size></box></geometry><material><diffuse>0.5 0.3 0.2 1</diffuse></material></visual></link></model>
+    <model name="box_a2"><static>true</static><pose>-3.2 3.8 0.4 0 0 0.3</pose><link name="link"><collision name="c"><geometry><box><size>0.8 0.5 0.8</size></box></geometry></collision><visual name="v"><geometry><box><size>0.8 0.5 0.8</size></box></geometry><material><diffuse>0.5 0.3 0.2 1</diffuse></material></visual></link></model>
+    <model name="box_a3"><static>true</static><pose>-4.5 2 0.25 0  0 0</pose><link name="link"><collision name="c"><geometry><box><size>0.5 0.5 0.5</size></box></geometry></collision><visual name="v"><geometry><box><size>0.5 0.5 0.5</size></box></geometry><material><diffuse>0.5 0.3 0.2 1</diffuse></material></visual></link></model>
+
+    <!-- 散布的障碍物群 B (右上) -->
+    <model name="box_b1"><static>true</static><pose>3 4 0.35 0 0 0</pose><link name="link"><collision name="c"><geometry><box><size>0.7 0.7 0.7</size></box></geometry></collision><visual name="v"><geometry><box><size>0.7 0.7 0.7</size></box></geometry><material><diffuse>0.2 0.4 0.5 1</diffuse></material></visual></link></model>
+    <model name="box_b2"><static>true</static><pose>4 3 0.4 0 0 0.5</pose><link name="link"><collision name="c"><geometry><box><size>0.9 0.4 0.8</size></box></geometry></collision><visual name="v"><geometry><box><size>0.9 0.4 0.8</size></box></geometry><material><diffuse>0.2 0.4 0.5 1</diffuse></material></visual></link></model>
+    <model name="cyl_b1"><static>true</static><pose>3.5 4.5 0.3 0 0 0</pose><link name="link"><collision name="c"><geometry><cylinder><radius>0.3</radius><length>0.6</length></cylinder></geometry></collision><visual name="v"><geometry><cylinder><radius>0.3</radius><length>0.6</length></cylinder></geometry><material><diffuse>0.2 0.4 0.5 1</diffuse></material></visual></link></model>
+
+    <!-- 散布的障碍物群 C (中央) -->
+    <model name="box_c1"><static>true</static><pose>0 1 0.4 0 0 0.2</pose><link name="link"><collision name="c"><geometry><box><size>1.0 0.6 0.8</size></box></geometry></collision><visual name="v"><geometry><box><size>1.0 0.6 0.8</size></box></geometry><material><diffuse>0.4 0.4 0.3 1</diffuse></material></visual></link></model>
+    <model name="box_c2"><static>true</static><pose>-0.5 -1.5 0.35 0 0 0</pose><link name="link"><collision name="c"><geometry><box><size>0.7 0.7 0.7</size></box></geometry></collision><visual name="v"><geometry><box><size>0.7 0.7 0.7</size></box></geometry><material><diffuse>0.4 0.4 0.3 1</diffuse></material></visual></link></model>
+    <model name="box_c3"><static>true</static><pose>1.2 -0.5 0.3 0 0 0</pose><link name="link"><collision name="c"><geometry><box><size>0.5 1.0 0.6</size></box></geometry></collision><visual name="v"><geometry><box><size>0.5 1.0 0.6</size></box></geometry><material><diffuse>0.4 0.4 0.3 1</diffuse></material></visual></link></model>
+
+    <!-- 散布的障碍物群 D (左下) -->
+    <model name="box_d1"><static>true</static><pose>-3 -3 0.3 0 0 0</pose><link name="link"><collision name="c"><geometry><box><size>0.6 0.8 0.6</size></box></geometry></collision><visual name="v"><geometry><box><size>0.6 0.8 0.6</size></box></geometry><material><diffuse>0.3 0.5 0.3 1</diffuse></material></visual></link></model>
+    <model name="cyl_d1"><static>true</static><pose>-4 -4 0.35 0 0 0</pose><link name="link"><collision name="c"><geometry><cylinder><radius>0.35</radius><length>0.7</length></cylinder></geometry></collision><visual name="v"><geometry><cylinder><radius>0.35</radius><length>0.7</length></cylinder></geometry><material><diffuse>0.3 0.5 0.3 1</diffuse></material></visual></link></model>
+
+    <!-- 散布的障碍物群 E (右下) -->
+    <model name="box_e1"><static>true</static><pose>4 -3 0.3 0 0 0</pose><link name="link"><collision name="c"><geometry><box><size>0.8 0.6 0.6</size></box></geometry></collision><visual name="v"><geometry><box><size>0.8 0.6 0.6</size></box></geometry><material><diffuse>0.5 0.2 0.4 1</diffuse></material></visual></link></model>
+    <model name="box_e2"><static>true</static><pose>3 -4.5 0.4 0 0 0</pose><link name="link"><collision name="c"><geometry><box><size>0.5 0.5 0.8</size></box></geometry></collision><visual name="v"><geometry><box><size>0.5 0.5 0.8</size></box></geometry><material><diffuse>0.5 0.2 0.4 1</diffuse></material></visual></link></model>
+    <model name="cyl_e1"><static>true</static><pose>5 -2 0.3 0 0 0</pose><link name="link"><collision name="c"><geometry><cylinder><radius>0.3</radius><length>0.6</length></cylinder></geometry></collision><visual name="v"><geometry><cylinder><radius>0.3</radius><length>0.6</length></cylinder></geometry><material><diffuse>0.5 0.2 0.4 1</diffuse></material></visual></link></model>
+
+    <!-- 通道障碍物 -->
+    <model name="box_f1"><static>true</static><pose>-2 0 0.3 0 0 0</pose><link name="link"><collision name="c"><geometry><box><size>0.4 0.4 0.6</size></box></geometry></collision><visual name="v"><geometry><box><size>0.4 0.4 0.6</size></box></geometry><material><diffuse>0.6 0.5 0.3 1</diffuse></material></visual></link></model>
+    <model name="box_f2"><static>true</static><pose>2 0.5 0.3 0 0 0</pose><link name="link"><collision name="c"><geometry><box><size>0.4 0.4 0.6</size></box></geometry></collision><visual name="v"><geometry><box><size>0.4 0.4 0.6</size></box></geometry><material><diffuse>0.6 0.5 0.3 1</diffuse></material></visual></link></model>
+    <model name="box_f3"><static>true</static><pose>0 -3 0.25 0 0 0</pose><link name="link"><collision name="c"><geometry><box><size>0.5 0.3 0.5</size></box></geometry></collision><visual name="v"><geometry><box><size>0.5 0.3 0.5</size></box></geometry><material><diffuse>0.6 0.5 0.3 1</diffuse></material></visual></link></model>
+  </world>
+</sdf>

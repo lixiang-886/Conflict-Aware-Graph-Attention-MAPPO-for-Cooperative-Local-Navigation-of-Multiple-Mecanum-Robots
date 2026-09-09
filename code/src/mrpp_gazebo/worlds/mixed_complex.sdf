@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+<sdf version="1.9">
+  <world name="mixed_complex">
+    <gravity>0 0 -9.8</gravity>
+    <plugin filename="ignition-gazebo-physics-system" name="ignition::gazebo::systems::Physics"/>
+    <plugin filename="ignition-gazebo-scene-broadcaster-system" name="ignition::gazebo::systems::SceneBroadcaster"/>
+    <plugin filename="ignition-gazebo-user-commands-system" name="ignition::gazebo::systems::UserCommands"/>
+    <plugin filename="ignition-gazebo-sensors-system" name="ignition::gazebo::systems::Sensors">
+      <render_engine>ogre2</render_engine>
+    </plugin>
+
+    <light name="sun" type="directional">
+      <pose>0 0 10 0 0 0</pose>
+      <visualize>false</visualize>
+      <diffuse>0.8 0.8 0.8 1</diffuse>
+      <direction>-0.5 0.1 -0.9</direction>
+    </light>
+
+    <model name="ground_plane">
+      <static>true</static>
+      <link name="link">
+        <collision name="collision"><geometry><plane><normal>0 0 1</normal><size>24 24</size></plane></geometry></collision>
+        <visual name="visual"><geometry><plane><normal>0 0 1</normal><size>24 24</size></plane></geometry><material><diffuse>0.82 0.82 0.82 1</diffuse></material></visual>
+      </link>
+    </model>
+
+    <!-- 外墙 -->
+    <model name="wall_n"><static>true</static><pose>0 7.5 1.2 0 0 0</pose><link name="link"><collision name="c"><geometry><box><size>16 0.2 2.4</size></box></geometry></collision><visual name="v"><geometry><box><size>16 0.2 2.4</size></box></geometry><material><diffuse>0.6 0.6 0.6 1</diffuse></material></visual></link></model>
+    <model name="wall_s"><static>true</static><pose>0 -7.5 1.2 0 0 0</pose><link name="link"><collision name="c"><geometry><box><size>16 0.2 2.4</size></box></geometry></collision><visual name="v"><geometry><box><size>16 0.2 2.4</size></box></geometry><material><diffuse>0.6 0.6 0.6 1</diffuse></material></visual></link></model>
+    <model name="wall_e"><static>true</static><pose>8 0 1.2 0 0 0</pose><link name="link"><collision name="c"><geometry><box><size>0.2 14 2.4</size></box></geometry></collision><visual name="v"><geometry><box><size>0.2 14 2.4</size></box></geometry><material><diffuse>0.6 0.6 0.6 1</diffuse></material></visual></link></model>
+    <model name="wall_w"><static>true</static><pose>-8 0 1.2 0 0 0</pose><link name="link"><collision name="c"><geometry><box><size>0.2 14 2.4</size></box></geometry></collision><visual name="v"><geometry><box><size>0.2 14 2.4</size></box></geometry><material><diffuse>0.6 0.6 0.6 1</diffuse></material></visual></link></model>
+
+    <!-- 房间 A (左上) - 墙壁 -->
+    <model name="room_a_wall1"><static>true</static><pose>-4 3 1.2 0 0 0</pose><link name="link"><collision name="c"><geometry><box><size>4 0.15 2.4</size></box></geometry></collision><visual name="v"><geometry><box><size>4 0.15 2.4</size></box></geometry><material><diffuse>0.55 0.55 0.6 1</diffuse></material></visual></link></model>
+    <model name="room_a_wall2"><static>true</static><pose>-6 0.5 1.2 0 0 0</pose><link name="link"><collision name="c"><geometry><box><size>0.15 5 2.4</size></box></geometry></collision><visual name="v"><geometry><box><size>0.15 5 2.4</size></box></geometry><material><diffuse>0.55 0.55 0.6 1</diffuse></material></visual></link></model>
+
+    <!-- 房间 B (右下) - 墙壁 -->
+    <model name="room_b_wall1"><static>true</static><pose>4 -3 1.2 0 0 0</pose><link name="link"><collision name="c"><geometry><box><size>4 0.15 2.4</size></box></geometry></collision><visual name="v"><geometry><box><size>4 0.15 2.4</size></box></geometry><material><diffuse>0.55 0.55 0.6 1</diffuse></material></visual></link></model>
+    <model name="room_b_wall2"><static>true</static><pose>6 -0.5 1.2 0 0 0</pose><link name="link"><collision name="c"><geometry><box><size>0.15 5 2.4</size></box></geometry></collision><visual name="v"><geometry><box><size>0.15 5 2.4</size></box></geometry><material><diffuse>0.55 0.55 0.6 1</diffuse></material></visual></link></model>
+
+    <!-- 走廊隔墙 -->
+    <model name="corridor_wall1"><static>true</static><pose>0 2 1.2 0 0 0</pose><link name="link"><collision name="c"><geometry><box><size>0.15 3 2.4</size></box></geometry></collision><visual name="v"><geometry><box><size>0.15 3 2.4</size></box></geometry><material><diffuse>0.5 0.5 0.55 1</diffuse></material></visual></link></model>
+    <model name="corridor_wall2"><static>true</static><pose>0 -2 1.2 0 0 0</pose><link name="link"><collision name="c"><geometry><box><size>0.15 3 2.4</size></box></geometry></collision><visual name="v"><geometry><box><size>0.15 3 2.4</size></box></geometry><material><diffuse>0.5 0.5 0.55 1</diffuse></material></visual></link></model>
+
+    <!-- 家具 - 桌子 -->
+    <model name="table1"><static>true</static><pose>-3 5 0.35 0 0 0</pose><link name="link"><collision name="c"><geometry><box><size>1.2 0.8 0.7</size></box></geometry></collision><visual name="v"><geometry><box><size>1.2 0.8 0.7</size></box></geometry><material><diffuse>0.55 0.35 0.2 1</diffuse></material></visual></link></model>
+    <model name="table2"><static>true</static><pose>5 -5 0.35 0 0 0</pose><link name="link"><collision name="c"><geometry><box><size>1.0 0.6 0.7</size></box></geometry></collision><visual name="v"><geometry><box><size>1.0 0.6 0.7</size></box></geometry><material><diffuse>0.55 0.35 0.2 1</diffuse></material></visual></link></model>
+
+    <!-- 家具 - 书架 -->
+    <model name="shelf1"><static>true</static><pose>-5 4 0.7 0 0 0</pose><link name="link"><collision name="c"><geometry><box><size>0.3 1.5 1.4</size></box></geometry></collision><visual name="v"><geometry><box><size>0.3 1.5 1.4</size></box></geometry><material><diffuse>0.4 0.25 0.15 1</diffuse></material></visual></link></model>
+    <model name="shelf2"><static>true</static><pose>7 -4 0.7 0 0 0</pose><link name="link"><collision name="c"><geometry><box><size>0.3 1.5 1.4</size></box></geometry></collision><visual name="v"><geometry><box><size>0.3 1.5 1.4</size></box></geometry><material><diffuse>0.4 0.25 0.15 1</diffuse></material></visual></link></model>
+
+    <!-- 走廊中的障碍物 -->
+    <model name="barrel1"><static>true</static><pose>-2 0 0.3 0 0 0</pose><link name="link"><collision name="c"><geometry><cylinder><radius>0.25</radius><length>0.6</length></cylinder></geometry></collision><visual name="v"><geometry><cylinder><radius>0.25</radius><length>0.6</length></cylinder></geometry><material><diffuse>0.7 0.2 0.2 1</diffuse></material></visual></link></model>
+    <model name="barrel2"><static>true</static><pose>3 1 0.3 0 0 0</pose><link name="link"><collision name="c"><geometry><cylinder><radius>0.25</radius><length>0.6</length></cylinder></geometry></collision><visual name="v"><geometry><cylinder><radius>0.25</radius><length>0.6</length></cylinder></geometry><material><diffuse>0.7 0.2 0.2 1</diffuse></material></visual></link></model>
+    <model name="crate1"><static>true</static><pose>0 -4.5 0.25 0 0 0.4</pose><link name="link"><collision name="c"><geometry><box><size>0.5 0.5 0.5</size></box></geometry></collision><visual name="v"><geometry><box><size>0.5 0.5 0.5</size></box></geometry><material><diffuse>0.3 0.5 0.3 1</diffuse></material></visual></link></model>
+    <model name="crate2"><static>true</static><pose>1 0.5 0.25 0 0 0</pose><link name="link"><collision name="c"><geometry><box><size>0.4 0.4 0.5</size></box></geometry></collision><visual name="v"><geometry><box><size>0.4 0.4 0.5</size></box></geometry><material><diffuse>0.3 0.5 0.3 1</diffuse></material></visual></link></model>
+  </world>
+</sdf>

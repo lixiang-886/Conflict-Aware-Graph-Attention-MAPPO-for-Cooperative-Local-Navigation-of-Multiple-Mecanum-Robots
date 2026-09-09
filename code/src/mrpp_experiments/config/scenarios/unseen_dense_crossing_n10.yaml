@@ -1,0 +1,35 @@
+name: unseen_dense_crossing_n10
+world: unseen_dense_crossing
+max_steps: 2400
+dt: 0.1
+robots:
+  - name: robot_1
+    start: {x: 7.0, y: 0.0, yaw: 3.1416}
+    goal: {x: -7.0, y: 0.0, yaw: 3.1416}
+  - name: robot_2
+    start: {x: 5.663, y: 4.114, yaw: -2.5133}
+    goal: {x: -5.663, y: -4.114, yaw: -2.5133}
+  - name: robot_3
+    start: {x: 2.163, y: 6.657, yaw: -1.8850}
+    goal: {x: -2.163, y: -6.657, yaw: -1.8850}
+  - name: robot_4
+    start: {x: -2.163, y: 6.657, yaw: -1.2566}
+    goal: {x: 2.163, y: -6.657, yaw: -1.2566}
+  - name: robot_5
+    start: {x: -5.663, y: 4.114, yaw: -0.6283}
+    goal: {x: 5.663, y: -4.114, yaw: -0.6283}
+  - name: robot_6
+    start: {x: -7.0, y: 0.0, yaw: 0.0}
+    goal: {x: 7.0, y: 0.0, yaw: 0.0}
+  - name: robot_7
+    start: {x: -5.663, y: -4.114, yaw: 0.6283}
+    goal: {x: 5.663, y: 4.114, yaw: 0.6283}
+  - name: robot_8
+    start: {x: -2.163, y: -6.657, yaw: 1.2566}
+    goal: {x: 2.163, y: 6.657, yaw: 1.2566}
+  - name: robot_9
+    start: {x: 2.163, y: -6.657, yaw: 1.8850}
+    goal: {x: -2.163, y: 6.657, yaw: 1.8850}
+  - name: robot_10
+    start: {x: 5.663, y: -4.114, yaw: 2.5133}
+    goal: {x: -5.663, y: 4.114, yaw: 2.5133}

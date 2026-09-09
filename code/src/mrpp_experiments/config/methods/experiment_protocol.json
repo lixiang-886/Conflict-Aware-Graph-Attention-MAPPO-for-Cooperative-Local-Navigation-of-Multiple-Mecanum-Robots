@@ -1,0 +1,121 @@
+{
+  "protocol_version": "formal-experiment-v1",
+  "formal_approval_gate": "results/formal_experiments/APPROVED_FORMAL_RUNS",
+  "formal_result_root": "results/formal_experiments",
+  "formal_checkpoint_root": "models/checkpoints/formal_experiments",
+  "main_methods": [
+    "ippo",
+    "mappo",
+    "maddpg",
+    "mo_gat_mappo"
+  ],
+  "mechanism_method": "mo_gat_mappo",
+  "ablation_methods": [
+    "ablation_no_graph_attention",
+    "ablation_fixed_reward",
+    "ablation_no_gate",
+    "ablation_no_coordinator"
+  ],
+  "scenarios": [
+    "static_clutter",
+    "pedestrian_dynamic",
+    "mixed_complex"
+  ],
+  "training_seeds": [0, 1, 2, 3, 4, 5, 6, 7],
+  "training": {
+    "independent_method_scenario_seed_runs": true,
+    "episodes": 100,
+    "validation_interval": 5,
+    "validation_points": 20,
+    "initial_validation_diagnostic_only": true,
+    "validation_rollback": false,
+    "checkpoint_selection": "deterministic_validation_lexicographic_v1",
+    "sim_step_mode": "realtime",
+    "control_step_sec": 0.1,
+    "device": "cuda"
+  },
+  "evaluation": {
+    "episodes_per_checkpoint": 10,
+    "sim_step_mode": "realtime",
+    "paired_seed_rule": "training_seed*10000+scenario_index*100+episode_id",
+    "randomization_seed_rule": "e*1000003+episode_id (e = 10000*training_seed + 100*scenario_index + episode_id); pedestrian_seed = robot_seed + 97",
+    "start_position_jitter_m": 0.05,
+    "start_yaw_jitter_rad": 0.15,
+    "pedestrian_phase_jitter_sec": 10.0,
+    "pedestrian_speed_jitter_fraction": 0.1,
+    "normal_sensor_profile": "nominal",
+    "normal_safety_sensor_profile": "nominal"
+  },
+  "shared_stack": {
+    "global_guide": "A_star",
+    "waypoint_lookahead": "scenario_waypoint_manager",
+    "robot_model": "mecanum_robot",
+    "maximum_translational_speed_mps": 0.6,
+    "maximum_angular_speed_radps": 2.0,
+    "maximum_linear_acceleration_mps2": 1.2,
+    "maximum_angular_acceleration_radps2": 3.0,
+    "orca_style_prior": true,
+    "modular_lidar_proximity_safety_envelope": true,
+    "residual_authority": "scenario_matched_across_methods"
+  },
+  "fc_gat_contract": {
+    "reference_method": "mo_gat_mappo",
+    "only_allowed_difference": "use_fully_connected_graph",
+    "training_scenario": "mixed_complex",
+    "training_seeds": [0, 1, 2, 3, 4, 5, 6, 7]
+  },
+  "safety_off": {
+    "safety_filter_enabled": false,
+    "orca_style_prior": true,
+    "paired_with_normal_evaluation": true
+  },
+  "scalability": {
+    "mode": "zero_shot_team_size",
+    "methods": ["mo_gat_mappo", "fc_gat_mappo"],
+    "robot_counts": [4, 6, 8, 10],
+    "training_scenario": "mixed_complex",
+    "episodes_per_checkpoint": 10
+  },
+  "inference_microbenchmark": {
+    "robot_counts": [4, 6, 8, 10, 16, 20],
+    "warmup_iterations": 50,
+    "timed_iterations": 950,
+    "device": "cuda",
+    "graph_modes": ["fully_connected", "cpa_conditioned"],
+    "implementation": "dense_masked_attention"
+  },
+  "communication_profiles": [
+    {"name": "nominal", "delay_ms": 0, "packet_drop_rate": 0.0},
+    {"name": "mild", "delay_ms": 50, "packet_drop_rate": 0.05},
+    {"name": "moderate", "delay_ms": 100, "packet_drop_rate": 0.1},
+    {"name": "severe", "delay_ms": 200, "packet_drop_rate": 0.2}
+  ],
+  "classical_reference": {
+    "controller": "classical_local_controller",
+    "description": "waypoint command + ORCA-style prior + velocity/slew-rate limits + shared safety envelope, with no learned residual components",
+    "checkpoints": "none; eight matched evaluation-seed groups per scenario",
+    "scenarios": ["static_clutter", "pedestrian_dynamic", "mixed_complex"],
+    "evaluation_blocks": 8,
+    "episodes_per_block": 10,
+    "shared_astar_waypoint_guide": true,
+    "shared_orca_style_prior": true,
+    "shared_post_command_safety_envelope": true,
+    "not_rvo2_software": true
+  },
+  "statistics": {
+    "unit": "training_seed",
+    "n": 8,
+    "episode_aggregation": "mean_within_training_seed",
+    "primary_pair": ["mappo", "mo_gat_mappo"],
+    "primary_metrics": ["average_completion_time", "makespan", "average_waiting_time"],
+    "test": "two_sided_wilcoxon_signed_rank",
+    "effect_size": "rank_biserial",
+    "multiplicity": "holm_across_9_primary_comparisons",
+    "confidence_interval": "paired_difference_95_percent"
+  },
+  "technical_rerun_policy": {
+    "performance_based_rerun_allowed": false,
+    "technical_failure_rerun_allowed": true,
+    "replacement_link_required": true
+  }
+}

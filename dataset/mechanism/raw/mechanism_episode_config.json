@@ -1,0 +1,92 @@
+{
+  "algorithm": "mo_gat_mappo",
+  "checkpoint": "checkpoints/ca_gat_mappo/mixed_complex/seed1/best_checkpoint.pt",
+  "checkpoint_sha256": "c03005bf0eb040e6bc05ad26f5269c09756ec688c4ef76c4212972cc7b3087b7",
+  "communication": {
+    "delay_ms": 0.0,
+    "packet_drop_rate": 0.0,
+    "profile": "nominal",
+    "safety_sensor_channel": "nominal",
+    "scope": "policy_neighbour_state_channel",
+    "seed": 10200
+  },
+  "config_sha256": "b3d189738e7f4034b2dc861d927141e1f97a1fa0f8be44474f18c08ee35ee623",
+  "device": "cuda",
+  "dt": 0.1,
+  "episode_id": 0,
+  "evaluation_seed": 10200,
+  "gazebo_update_rate": null,
+  "max_steps": 2000,
+  "modular_safety_audit": true,
+  "orca_prior_enabled": true,
+  "pedestrian_configs": [
+    {"direction": "east", "name": "ped_1", "phase_offset_sec": 6.820656928311094, "speed": 0.0776814032411871, "start_x": -4.5, "start_y": 4.4, "yaw": 0.0},
+    {"direction": "west", "name": "ped_2", "phase_offset_sec": 3.634419024442276, "speed": 0.21970965686792812, "start_x": 4.5, "start_y": -4.4, "yaw": 3.14},
+    {"direction": "north", "name": "ped_3", "phase_offset_sec": 0.07063354067381566, "speed": 0.24345817533224512, "start_x": -3.0, "start_y": -4.5, "yaw": 1.57}
+  ],
+  "policy_sensor_perturbation": {
+    "dropout_probability": 0.0,
+    "enabled": false,
+    "latency_steps": 0,
+    "lidar_range_noise_std": 0.0,
+    "lidar_sample_dropout_probability": 0.0,
+    "perturb_lidar": true,
+    "perturb_pedestrian_states": true,
+    "perturb_robot_states": true,
+    "position_noise_std": 0.0,
+    "profile": "nominal",
+    "seed": 10291800,
+    "velocity_noise_std": 0.0
+  },
+  "policy_sensor_perturbation_stats": {
+    "latency_warmup_steps": 0,
+    "lidar_sample_dropouts": 0,
+    "lidar_scan_dropouts": 0,
+    "pedestrian_state_dropouts": 0,
+    "robot_state_dropouts": 0,
+    "steps": 536
+  },
+  "randomization": {
+    "enabled": true,
+    "profile": "randomized_v1",
+    "start_position_jitter_m": 0.05,
+    "start_yaw_jitter_rad": 0.15
+  },
+  "randomization_seed": 10200030600,
+  "randomized_start_positions": {
+    "robot_1": [-6.022617136361165, 5.987569819933863, -0.8380739246859963],
+    "robot_2": [-5.959832653363655, -6.029914956858287, 0.8694790134780448],
+    "robot_3": [6.04394943173606, 6.03646271132181, -2.2159166942392696],
+    "robot_4": [5.956391114916236, -5.95008908731279, 2.422647176420182]
+  },
+  "safety_filter_enabled": true,
+  "safety_sensor_perturbation": {
+    "dropout_probability": 0.0,
+    "enabled": false,
+    "latency_steps": 0,
+    "lidar_range_noise_std": 0.0,
+    "lidar_sample_dropout_probability": 0.0,
+    "perturb_lidar": true,
+    "perturb_pedestrian_states": true,
+    "perturb_robot_states": true,
+    "position_noise_std": 0.0,
+    "profile": "nominal",
+    "seed": 10332600,
+    "velocity_noise_std": 0.0
+  },
+  "safety_sensor_perturbation_stats": {
+    "latency_warmup_steps": 0,
+    "lidar_sample_dropouts": 0,
+    "lidar_scan_dropouts": 0,
+    "pedestrian_state_dropouts": 0,
+    "robot_state_dropouts": 0,
+    "steps": 536
+  },
+  "scenario": "mixed_complex",
+  "scenario_path": "code/src/mrpp_experiments/config/scenarios/mixed_complex.yaml",
+  "seed": 10200,
+  "sim_step_mode": "realtime",
+  "source_tree_sha256": "ac5d67d73b22e46297c126284993fbfc240a44aabd03399198274e0d390db7b4",
+  "training_seed": 1,
+  "variant": "formal-experiment-v1:mechanism_figure"
+}

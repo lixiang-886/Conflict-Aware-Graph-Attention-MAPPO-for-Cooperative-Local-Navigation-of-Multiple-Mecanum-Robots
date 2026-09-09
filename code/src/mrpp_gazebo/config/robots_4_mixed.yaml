@@ -1,0 +1,17 @@
+robots:
+  - name: robot_1
+    x: -6.0
+    y: 6.0
+    yaw: -0.7854
+  - name: robot_2
+    x: -6.0
+    y: -6.0
+    yaw: 0.7854
+  - name: robot_3
+    x: 6.0
+    y: 6.0
+    yaw: -2.3562
+  - name: robot_4
+    x: 6.0
+    y: -6.0
+    yaw: 2.3562

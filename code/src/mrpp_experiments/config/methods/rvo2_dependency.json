@@ -1,0 +1,18 @@
+{
+  "baseline_name": "rvo2",
+  "role": "canonical reciprocal-agent baseline",
+  "upstream_cpp": "https://github.com/snape/RVO2",
+  "python_wrapper": "https://github.com/sybrenstuvel/Python-RVO2",
+  "python_wrapper_commit": "c2c46ba8d59556aa10faf03479293236efea154d",
+  "python_package": "pyrvo2",
+  "python_import": "rvo2",
+  "license": "Apache-2.0",
+  "build_dependencies": {
+    "Cython": "3.3.0"
+  },
+  "tested_environment": {
+    "python": "3.10.12",
+    "platform": "linux_x86_64"
+  },
+  "scope_note": "RVO2 handles reciprocal robot and pedestrian agents; the shared A* waypoint guide and post-command safety envelope handle the matched navigation stack."
+}

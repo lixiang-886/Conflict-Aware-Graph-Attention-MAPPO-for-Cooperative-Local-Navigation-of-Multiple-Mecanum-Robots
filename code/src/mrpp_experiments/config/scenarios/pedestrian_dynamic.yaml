@@ -1,0 +1,18 @@
+name: pedestrian_dynamic
+world: pedestrian_dynamic
+# Formal dynamic scenario: 4 robots crossing diagonally with 4 dynamic pedestrians.
+max_steps: 1500
+dt: 0.1
+robots:
+  - name: robot_1
+    start: {x: -5.0, y: 4.0, yaw: -0.6747}
+    goal: {x: 5.0, y: -4.0, yaw: -0.6747}
+  - name: robot_2
+    start: {x: -5.0, y: -4.0, yaw: 0.6747}
+    goal: {x: 5.0, y: 4.0, yaw: 0.6747}
+  - name: robot_3
+    start: {x: 5.0, y: -4.0, yaw: 2.4669}
+    goal: {x: -5.0, y: 4.0, yaw: 2.4669}
+  - name: robot_4
+    start: {x: 5.0, y: 4.0, yaw: -2.4669}
+    goal: {x: -5.0, y: -4.0, yaw: -2.4669}

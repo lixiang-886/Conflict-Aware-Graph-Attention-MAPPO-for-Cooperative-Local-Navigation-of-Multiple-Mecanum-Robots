@@ -1,0 +1,10 @@
+sensor_perturbation:
+  profile: nominal
+  enabled: false
+  position_noise_std: 0.0
+  velocity_noise_std: 0.0
+  lidar_range_noise_std: 0.0
+  latency_steps: 0
+  dropout_probability: 0.0
+  lidar_sample_dropout_probability: 0.0
+  seed: 0

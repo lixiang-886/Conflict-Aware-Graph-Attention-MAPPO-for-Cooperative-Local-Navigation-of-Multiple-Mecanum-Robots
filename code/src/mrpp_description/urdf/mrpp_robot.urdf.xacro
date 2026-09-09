@@ -1,0 +1,112 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="mrpp_mecanum_robot">
+  <!-- Visualization-only URDF matching the formal Gazebo SDF footprint. -->
+  <xacro:property name="base_length" value="0.34"/>
+  <xacro:property name="base_width" value="0.23"/>
+  <xacro:property name="base_height" value="0.09"/>
+  <xacro:property name="wheel_radius" value="0.055"/>
+  <xacro:property name="wheel_width" value="0.036"/>
+  <xacro:property name="wheel_x" value="0.120"/>
+  <xacro:property name="wheel_y" value="0.118"/>
+
+  <material name="robot_red">
+    <color rgba="0.8 0.2 0.2 1.0"/>
+  </material>
+  <material name="dark_gray">
+    <color rgba="0.03 0.034 0.038 1.0"/>
+  </material>
+  <material name="metal">
+    <color rgba="0.62 0.62 0.60 1.0"/>
+  </material>
+  <material name="black">
+    <color rgba="0.02 0.02 0.025 1.0"/>
+  </material>
+
+  <link name="base_link">
+    <visual name="chassis_visual">
+      <origin xyz="0 0 0.105" rpy="0 0 0"/>
+      <geometry>
+        <box size="${base_length} ${base_width} ${base_height}"/>
+      </geometry>
+      <material name="robot_red"/>
+    </visual>
+    <visual name="upper_deck_visual">
+      <origin xyz="0.005 0 0.174" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.275 0.172 0.014"/>
+      </geometry>
+      <material name="dark_gray"/>
+    </visual>
+    <collision name="base_collision">
+      <origin xyz="0 0 0.105" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.30 0.20 0.10"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <origin xyz="0 0 0.105" rpy="0 0 0"/>
+      <mass value="2.2"/>
+      <inertia ixx="0.025" ixy="0" ixz="0" iyy="0.035" iyz="0" izz="0.045"/>
+    </inertial>
+  </link>
+
+  <link name="base_scan">
+    <visual name="lidar_body_visual">
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <cylinder radius="0.052" length="0.044"/>
+      </geometry>
+      <material name="black"/>
+    </visual>
+    <inertial>
+      <mass value="0.12"/>
+      <inertia ixx="0.0001" ixy="0" ixz="0" iyy="0.0001" iyz="0" izz="0.0001"/>
+    </inertial>
+  </link>
+
+  <xacro:macro name="mecanum_wheel" params="name x y roller_sign">
+    <link name="${name}">
+      <visual name="wheel_visual">
+        <origin xyz="0 0 0" rpy="1.5708 0 0"/>
+        <geometry>
+          <cylinder radius="${wheel_radius}" length="${wheel_width}"/>
+        </geometry>
+        <material name="black"/>
+      </visual>
+      <visual name="roller_visual">
+        <origin xyz="0 0 0" rpy="0 0 ${roller_sign * 0.7854}"/>
+        <geometry>
+          <box size="0.085 0.010 0.010"/>
+        </geometry>
+        <material name="metal"/>
+      </visual>
+      <collision name="wheel_collision">
+        <origin xyz="0 0 0" rpy="1.5708 0 0"/>
+        <geometry>
+          <cylinder radius="${wheel_radius}" length="${wheel_width}"/>
+        </geometry>
+      </collision>
+      <inertial>
+        <mass value="0.18"/>
+        <inertia ixx="0.00018" ixy="0" ixz="0" iyy="0.00018" iyz="0" izz="0.00024"/>
+      </inertial>
+    </link>
+    <joint name="${name}_joint" type="continuous">
+      <parent link="base_link"/>
+      <child link="${name}"/>
+      <origin xyz="${x} ${y} 0.055" rpy="0 0 0"/>
+      <axis xyz="0 1 0"/>
+    </joint>
+  </xacro:macro>
+
+  <xacro:mecanum_wheel name="front_left_wheel" x="${wheel_x}" y="${wheel_y}" roller_sign="1"/>
+  <xacro:mecanum_wheel name="front_right_wheel" x="${wheel_x}" y="${-wheel_y}" roller_sign="-1"/>
+  <xacro:mecanum_wheel name="back_left_wheel" x="${-wheel_x}" y="${wheel_y}" roller_sign="-1"/>
+  <xacro:mecanum_wheel name="back_right_wheel" x="${-wheel_x}" y="${-wheel_y}" roller_sign="1"/>
+
+  <joint name="lidar_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="base_scan"/>
+    <origin xyz="0 0 0.205" rpy="0 0 0"/>
+  </joint>
+</robot>

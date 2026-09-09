@@ -1,0 +1,17 @@
+name: unseen_dense_crossing_n4
+world: unseen_dense_crossing
+max_steps: 2400
+dt: 0.1
+robots:
+  - name: robot_1
+    start: {x: 7.0, y: 0.0, yaw: 3.1416}
+    goal: {x: -7.0, y: 0.0, yaw: 3.1416}
+  - name: robot_2
+    start: {x: 0.0, y: 7.0, yaw: -1.5708}
+    goal: {x: 0.0, y: -7.0, yaw: -1.5708}
+  - name: robot_3
+    start: {x: -7.0, y: 0.0, yaw: 0.0}
+    goal: {x: 7.0, y: 0.0, yaw: 0.0}
+  - name: robot_4
+    start: {x: 0.0, y: -7.0, yaw: 1.5708}
+    goal: {x: 0.0, y: 7.0, yaw: 1.5708}

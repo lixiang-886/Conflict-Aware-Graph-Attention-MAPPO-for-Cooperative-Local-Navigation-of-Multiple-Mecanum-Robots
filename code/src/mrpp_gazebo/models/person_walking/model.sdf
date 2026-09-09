@@ -1,0 +1,111 @@
+<?xml version="1.0"?>
+<sdf version="1.9">
+  <model name="PLACEHOLDER_NAME">
+    <pose>PLACEHOLDER_POSE</pose>
+    <static>false</static>
+
+    <!-- 身体 -->
+    <link name="link">
+      <inertial>
+        <pose>0 0 0.95 0 0 0</pose>
+        <mass>80.0</mass>
+        <inertia>
+          <ixx>27.82</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>24.88</iyy>
+          <iyz>0</iyz>
+          <izz>4.57</izz>
+        </inertia>
+      </inertial>
+
+      <collision name="bottom">
+        <pose>0 0 0.01 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.35 0.75 0.02</size>
+          </box>
+        </geometry>
+      </collision>
+
+      <collision name="person">
+        <pose>0 0 0.5 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <uri>model://person_walking/meshes/walking.dae</uri>
+          </mesh>
+        </geometry>
+      </collision>
+
+      <visual name="visual">
+        <pose>0 0 0.5 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <uri>model://person_walking/meshes/walking.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+
+    <!-- 左轮 -->
+    <link name="left_wheel">
+      <pose>0 0.2 0.05 1.5708 0 0</pose>
+      <collision name="collision">
+        <geometry><cylinder><radius>0.05</radius><length>0.02</length></cylinder></geometry>
+      </collision>
+      <visual name="visual">
+        <geometry><cylinder><radius>0.05</radius><length>0.02</length></cylinder></geometry>
+        <material><diffuse>0.2 0.2 0.2 1</diffuse></material>
+      </visual>
+      <inertial>
+        <mass>0.5</mass>
+        <inertia>
+          <ixx>0.001</ixx><ixy>0</ixy><ixz>0</ixz>
+          <iyy>0.001</iyy><iyz>0</iyz>
+          <izz>0.001</izz>
+        </inertia>
+      </inertial>
+    </link>
+
+    <!-- 右轮 -->
+    <link name="right_wheel">
+      <pose>0 -0.2 0.05 1.5708 0 0</pose>
+      <collision name="collision">
+        <geometry><cylinder><radius>0.05</radius><length>0.02</length></cylinder></geometry>
+      </collision>
+      <visual name="visual">
+        <geometry><cylinder><radius>0.05</radius><length>0.02</length></cylinder></geometry>
+        <material><diffuse>0.2 0.2 0.2 1</diffuse></material>
+      </visual>
+      <inertial>
+        <mass>0.5</mass>
+        <inertia>
+          <ixx>0.001</ixx><ixy>0</ixy><ixz>0</ixz>
+          <iyy>0.001</iyy><iyz>0</iyz>
+          <izz>0.001</izz>
+        </inertia>
+      </inertial>
+    </link>
+
+    <joint name="left_wheel_joint" type="revolute">
+      <parent>link</parent>
+      <child>left_wheel</child>
+      <axis><xyz>0 0 1</xyz></axis>
+    </joint>
+    <joint name="right_wheel_joint" type="revolute">
+      <parent>link</parent>
+      <child>right_wheel</child>
+      <axis><xyz>0 0 1</xyz></axis>
+    </joint>
+
+    <!-- 差速驱动插件 -->
+    <plugin filename="ignition-gazebo-diff-drive-system" name="ignition::gazebo::systems::DiffDrive">
+      <left_joint>left_wheel_joint</left_joint>
+      <right_joint>right_wheel_joint</right_joint>
+      <wheel_separation>0.4</wheel_separation>
+      <wheel_radius>0.05</wheel_radius>
+      <topic>PLACEHOLDER_NS/cmd_vel</topic>
+      <odom_topic>PLACEHOLDER_NS/odom</odom_topic>
+    </plugin>
+  </model>
+</sdf>

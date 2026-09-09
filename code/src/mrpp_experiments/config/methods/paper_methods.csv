@@ -1,0 +1,9 @@
+name,role,description
+ippo,baseline,Shared A-star path/lookahead guide with ORCA prior and safety filter plus the independent PPO residual local policies (main comparison)
+mappo,baseline,Shared A-star path/lookahead guide with ORCA prior and safety filter plus the parameter-sharing PPO residual local policy (primary matched baseline)
+maddpg,baseline,Shared A-star path/lookahead guide with ORCA prior and safety filter plus the MADDPG-style centralized-critic residual local policy (main comparison)
+mo_gat_mappo,proposed,Shared A-star path/lookahead guide with ORCA prior and safety filter plus the conflict-aware graph-attention MAPPO residual policy with bounded coordinator and interaction gate (CA-GAT-MAPPO)
+ablation_no_graph_attention,ablation,Shared A-star path/lookahead guide and safety filter with CA-GAT-MAPPO local policy without graph attention
+ablation_fixed_reward,ablation,Shared A-star path/lookahead guide and safety filter with CA-GAT-MAPPO local policy using the fixed reduced-term reward configuration
+ablation_no_gate,ablation,Shared A-star path/lookahead guide and safety filter with CA-GAT-MAPPO local policy without the interaction gate
+ablation_no_coordinator,ablation,Shared A-star path/lookahead guide and safety filter with CA-GAT-MAPPO local policy without the bounded conflict coordinator

@@ -1,0 +1,10 @@
+sensor_perturbation:
+  profile: severe
+  enabled: true
+  position_noise_std: 0.10
+  velocity_noise_std: 0.10
+  lidar_range_noise_std: 0.05
+  latency_steps: 3
+  dropout_probability: 0.10
+  lidar_sample_dropout_probability: 0.10
+  seed: 0

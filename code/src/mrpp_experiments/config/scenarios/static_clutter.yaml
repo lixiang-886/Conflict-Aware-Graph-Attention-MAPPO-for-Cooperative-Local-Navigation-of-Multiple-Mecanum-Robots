@@ -1,0 +1,17 @@
+name: static_clutter
+world: static_clutter
+max_steps: 1800
+dt: 0.1
+robots:
+  - name: robot_1
+    start: {x: -5.0, y: -4.0, yaw: 0.6747}
+    goal: {x: 5.0, y: 4.0, yaw: 0.6747}
+  - name: robot_2
+    start: {x: -5.0, y: 4.0, yaw: -0.6747}
+    goal: {x: 5.0, y: -4.0, yaw: -0.6747}
+  - name: robot_3
+    start: {x: 5.0, y: -4.0, yaw: 2.4669}
+    goal: {x: -5.0, y: 4.0, yaw: 2.4669}
+  - name: robot_4
+    start: {x: 5.0, y: 4.0, yaw: -2.4669}
+    goal: {x: -5.0, y: -4.0, yaw: -2.4669}

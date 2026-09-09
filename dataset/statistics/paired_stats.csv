@@ -1,0 +1,10 @@
+scenario,metric,n_pairs,MAPPO_mean,MAPPO_sample_sd,CA_GAT_MAPPO_mean,CA_GAT_MAPPO_sample_sd,absolute_reduction_MAPPO_minus_CA,relative_reduction_pct,paired_difference_mean_CA_minus_MAPPO,paired_difference_sample_sd,paired_difference_95ci_t_low,paired_difference_95ci_t_high,paired_difference_median,paired_difference_q1,paired_difference_q3,CA_GAT_better_count_of_8,wilcoxon_statistic,wilcoxon_p_raw,rank_biserial_effect_size,holm_adjusted_p_across_9,computed_by_script
+static_clutter,completion_time_s,8,37.44,2.98,33.58,0.11,3.86,10.31,-3.86,3.04,-6.4015,-1.3185,-2.4966,-5.7844,-1.5305,8,0,0.007812,-1,0.070312,computed_by_script
+static_clutter,makespan_s,8,41.4,5.22,36.7,0.17,4.7,11.35,-4.7,5.1766,-9.0277,-0.3723,-2.3537,-9.7954,-0.7774,7,2,0.023438,-0.8889,0.070312,computed_by_script
+static_clutter,waiting_time_s,8,2.82,1.55,0.5,0.07,2.32,82.27,-2.32,1.5993,-3.657,-0.983,-2.8323,-3.528,-0.7166,8,0,0.007812,-1,0.070312,computed_by_script
+dynamic_pedestrians,completion_time_s,8,32.3,0.39,31.7,0.18,0.6,1.86,-0.6,0.4071,-0.9403,-0.2597,-0.6021,-0.8612,-0.3459,7,1,0.015625,-0.9444,0.070312,computed_by_script
+dynamic_pedestrians,makespan_s,8,35.53,0.31,33.3,0.4,2.23,6.28,-2.23,0.4495,-2.6057,-1.8543,-2.2137,-2.5274,-2.0594,8,0,0.007812,-1,0.070312,computed_by_script
+dynamic_pedestrians,waiting_time_s,8,1.98,0.65,1.03,0.24,0.95,47.98,-0.95,0.7365,-1.5658,-0.3342,-0.863,-1.5903,-0.4563,7,1,0.015625,-0.9444,0.070312,computed_by_script
+mixed_complex,completion_time_s,8,47.61,0.75,45.9,0.64,1.71,3.59,-1.71,1.1397,-2.6628,-0.7572,-2.0297,-2.3647,-1.5183,7,1,0.015625,-0.9444,0.070312,computed_by_script
+mixed_complex,makespan_s,8,50.53,0.76,48.65,0.74,1.88,3.72,-1.88,0.8118,-2.5586,-1.2014,-1.884,-2.4596,-1.4932,8,0,0.007812,-1,0.070312,computed_by_script
+mixed_complex,waiting_time_s,8,1.08,0.03,0.71,0.09,0.37,34.26,-0.37,0.1016,-0.4549,-0.2851,-0.3652,-0.4272,-0.2982,8,0,0.007812,-1,0.070312,computed_by_script
